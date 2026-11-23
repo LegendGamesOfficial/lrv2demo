@@ -1,0 +1,25 @@
+{
+  "weapons": [
+    { "id": "pistol", "name": "Pistol", "category": "weapon", "rarities": [1, 2], "damage": [24, 26], "fireRate": 0.22, "range": 110, "mag": 16, "spread": 0.025, "auto": false },
+    { "id": "assault_rifle", "name": "Assault Rifle", "category": "weapon", "rarities": [1, 2, 3], "damage": [30, 31, 33], "fireRate": 0.17, "range": 180, "mag": 30, "spread": 0.03, "auto": true },
+    { "id": "pump_shotgun", "name": "Pump Shotgun", "category": "weapon", "rarities": [1, 2, 3], "damage": [78, 85, 92], "fireRate": 0.95, "range": 38, "mag": 5, "spread": 0.09, "pellets": 8, "auto": false },
+    { "id": "tactical_shotgun", "name": "Tactical Shotgun", "category": "weapon", "rarities": [1, 2, 3], "damage": [64, 70, 74], "fireRate": 0.55, "range": 34, "mag": 8, "spread": 0.11, "pellets": 8, "auto": true },
+    { "id": "smg", "name": "SMG", "category": "weapon", "rarities": [1, 2, 3], "damage": [17, 18, 19], "fireRate": 0.09, "range": 85, "mag": 30, "spread": 0.048, "auto": true },
+    { "id": "compact_smg", "name": "Compact SMG", "category": "weapon", "rarities": [4, 5], "damage": [21, 22], "fireRate": 0.08, "range": 95, "mag": 40, "spread": 0.042, "auto": true },
+    { "id": "scar", "name": "SCAR", "category": "weapon", "rarities": [4, 5], "damage": [35, 36], "fireRate": 0.16, "range": 200, "mag": 30, "spread": 0.018, "auto": true }
+  ],
+  "consumables": [
+    { "id": "small_shield", "name": "Small Shield Potion", "category": "heal", "rarity": 1, "shield": 25, "maxShield": 50, "stack": 2, "maxStack": 6, "useTime": 1.6 },
+    { "id": "shield_potion", "name": "Shield Potion", "category": "heal", "rarity": 2, "shield": 50, "maxShield": 100, "stack": 1, "maxStack": 3, "useTime": 2.8 },
+    { "id": "med_kit", "name": "Med Kit", "category": "heal", "rarity": 2, "hp": 100, "maxHp": 100, "stack": 1, "maxStack": 3, "useTime": 3.5 },
+    { "id": "bandages", "name": "Bandages", "category": "heal", "rarity": 1, "hp": 5, "maxHp": 75, "stack": 5, "maxStack": 15, "useTime": 1.2 },
+    { "id": "bush", "name": "Bush", "category": "utility", "rarity": 4, "stack": 1, "maxStack": 2, "useTime": 1.5 },
+    { "id": "grenade", "name": "Grenade", "category": "throwable", "rarity": 1, "damage": 100, "radius": 11, "stack": 3, "maxStack": 6, "useTime": 0.4 }
+  ],
+  "traps": [
+    { "id": "spike_trap", "name": "Spike Trap", "category": "trap", "rarity": 2, "damage": 100, "stack": 1 },
+    { "id": "zap_trap", "name": "Zap Trap", "category": "trap", "rarity": 2, "damage": 50, "stack": 1 },
+    { "id": "bouncer", "name": "Bouncer", "category": "trap", "rarity": 3, "bounceForce": 28, "stack": 3 },
+    { "id": "launch_pad", "name": "Launch Pad", "category": "trap", "rarity": 4, "launchForce": 48, "stack": 1 }
+  ]
+}

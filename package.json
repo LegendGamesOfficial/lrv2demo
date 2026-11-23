@@ -1,0 +1,12 @@
+{
+  "name": "legend-royale",
+  "version": "2.0.0",
+  "description": "Legend Royale — Modular 3D Browser Battle Royale built with Three.js for GitHub Pages",
+  "type": "module",
+  "scripts": {
+    "start": "npx serve .",
+    "test": "node --experimental-vm-modules tests/run_all.js"
+  },
+  "keywords": ["threejs", "battle-royale", "webgl", "github-pages", "game"],
+  "license": "MIT"
+}

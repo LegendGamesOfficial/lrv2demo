@@ -1,0 +1,97 @@
+{
+  "accounts": [
+    {
+      "username": "legend",
+      "password": "12312348KK",
+      "displayName": "legend (DEV)",
+      "role": "dev",
+      "level": 125,
+      "xp": 0,
+      "banner": {
+        "icon": "crown",
+        "color": "#2563eb"
+      },
+      "ownedItems": [
+        "default_skin_1",
+        "default_skin_2",
+        "default_skin_3",
+        "default_skin_4",
+        "skin_prisma",
+        "skin_goofball",
+        "skin_stealth_trooper",
+        "skin_black_knight",
+        "skin_assasin",
+        "skin_trooper",
+        "skin_assault_trooper",
+        "skin_purple_skull_trooper",
+        "emote_dance_moves",
+        "emote_squat_kick",
+        "emote_take_the_l",
+        "emote_doom",
+        "emote_kneel_of_honor",
+        "emote_disco_fever",
+        "emote_dab"
+      ],
+      "loadout": {
+        "skin": "skin_purple_skull_trooper",
+        "pickaxeColor": "#a855f7",
+        "gliderColor": "#7c3aed",
+        "bannerIcon": "crown",
+        "bannerColor": "#2563eb",
+        "emotes": [
+          "emote_dance_moves",
+          "emote_squat_kick",
+          "emote_take_the_l",
+          "emote_doom",
+          "emote_kneel_of_honor",
+          "emote_disco_fever",
+          "emote_dab",
+          null
+        ]
+      }
+    },
+    {
+      "username": "player1",
+      "password": "password123",
+      "displayName": "PlayerOne",
+      "role": "player",
+      "level": 1,
+      "xp": 0,
+      "banner": {
+        "icon": "star",
+        "color": "#7c3aed"
+      },
+      "ownedItems": [
+        "default_skin_1",
+        "default_skin_2",
+        "default_skin_3",
+        "default_skin_4",
+        "skin_purple_skull_trooper",
+        "emote_dance_moves",
+        "emote_squat_kick",
+        "emote_take_the_l",
+        "emote_doom",
+        "emote_kneel_of_honor",
+        "emote_disco_fever",
+        "emote_dab"
+      ],
+      "loadout": {
+        "skin": "default_skin_1",
+        "pickaxeColor": "#64748b",
+        "gliderColor": "#475569",
+        "bannerIcon": "star",
+        "bannerColor": "#7c3aed",
+        "emotes": [
+          "emote_dance_moves",
+          "emote_squat_kick",
+          "emote_take_the_l",
+          "emote_doom",
+          "emote_kneel_of_honor",
+          "emote_disco_fever",
+          "emote_dab",
+          null
+        ]
+      }
+    }
+  ]
+}

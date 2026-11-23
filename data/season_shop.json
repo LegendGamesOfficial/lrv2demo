@@ -1,0 +1,51 @@
+{
+  "season": 2,
+  "title": "Season 2 Season Shop",
+  "skins": [
+    {
+      "id": "season2_orange_astronaut",
+      "name": "Orange Astronaut",
+      "type": "skin",
+      "rarity": 2,
+      "requiredLevel": 1,
+      "seasonOnly": 2,
+      "colors": { "shirt": "#ea580c", "pants": "#c2410c", "skin": "#f1c27d", "hair": "#1f2937", "accent": "#f8fafc", "helmet": "astronaut" }
+    },
+    {
+      "id": "season2_rust_renegade",
+      "name": "Rust Renegade",
+      "type": "skin",
+      "rarity": 3,
+      "requiredLevel": 5,
+      "seasonOnly": 2,
+      "colors": { "shirt": "#9a3412", "pants": "#451a03", "skin": "#e0ac69", "hair": "#3b2314", "accent": "#f59e0b", "helmet": "commando" }
+    },
+    {
+      "id": "season2_manic",
+      "name": "Manic",
+      "type": "skin",
+      "rarity": 3,
+      "requiredLevel": 10,
+      "seasonOnly": 2,
+      "colors": { "shirt": "#991b1b", "pants": "#18181b", "skin": "#f1c27d", "hair": "#111827", "accent": "#ef4444", "helmet": "tactical" }
+    },
+    {
+      "id": "season2_carbon",
+      "name": "Carbon",
+      "type": "skin",
+      "rarity": 4,
+      "requiredLevel": 15,
+      "seasonOnly": 2,
+      "colors": { "shirt": "#1e293b", "pants": "#0f172a", "skin": "#c68642", "hair": "#030712", "accent": "#38bdf8", "helmet": "carbon" }
+    },
+    {
+      "id": "season2_alpha",
+      "name": "Alpha",
+      "type": "skin",
+      "rarity": 5,
+      "requiredLevel": 20,
+      "seasonOnly": 2,
+      "colors": { "shirt": "#09090b", "pants": "#18181b", "skin": "#18181b", "hair": "#09090b", "accent": "#eab308", "helmet": "alpha" }
+    }
+  ]
+}

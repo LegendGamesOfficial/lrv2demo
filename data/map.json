@@ -1,0 +1,12 @@
+{
+  "islandRadius": 460,
+  "pois": [
+    { "id": "leery_lake", "name": "Leery Lake", "x": -110, "z": -95, "radius": 68, "type": "lake", "color": "#2563eb", "buildings": 5 },
+    { "id": "cranky_city", "name": "Cranky City", "x": 115, "z": -125, "radius": 64, "type": "city", "color": "#64748b", "buildings": 11 },
+    { "id": "pleasant_town", "name": "Pleasant Town", "x": -175, "z": 65, "radius": 62, "type": "town", "color": "#dc2626", "buildings": 9 },
+    { "id": "spooky_springs", "name": "Spooky Springs", "x": 15, "z": 155, "radius": 60, "type": "springs", "color": "#7c3aed", "buildings": 7 },
+    { "id": "whispering_woods", "name": "Whispering Woods", "x": 185, "z": 45, "radius": 78, "type": "woods", "color": "#15803d", "buildings": 4 },
+    { "id": "mossy_moire", "name": "Mossy Moire", "x": -55, "z": -230, "radius": 64, "type": "swamp", "color": "#4d7c0f", "buildings": 6 },
+    { "id": "shady_suburbs", "name": "Shady Suburbs", "x": -25, "z": 10, "radius": 58, "type": "suburbs", "color": "#d97706", "buildings": 8 }
+  ]
+}

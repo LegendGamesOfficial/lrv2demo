@@ -1,0 +1,17 @@
+.item-card {
+  background: rgba(15, 23, 42, 0.92); border-radius: 10px; padding: 12px;
+  border: 2px solid rgba(148, 163, 184, 0.3); display: flex; flex-direction: column; gap: 6px;
+  transition: transform 0.14s ease;
+}
+.item-card:hover { transform: translateY(-2px); }
+.item-type-tag { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: #94a3b8; }
+.item-name { font-weight: 800; font-size: 1rem; color: #fff; }
+.item-meta { font-size: 0.8rem; color: #cbd5e1; }
+.item-card button { padding: 8px; border-radius: 6px; font-size: 0.82rem; }
+.lbucks-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.lbuck-pack {
+  background: linear-gradient(160deg, rgba(30, 58, 138, 0.75), rgba(15, 23, 42, 0.95));
+  border: 2px solid #38bdf8; border-radius: 12px; padding: 20px; text-align: center;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.lbuck-amount { font-size: 2rem; font-weight: 900; font-style: italic; color: #38bdf8; }

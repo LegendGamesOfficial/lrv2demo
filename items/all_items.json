@@ -1,0 +1,24 @@
+{
+  "items": [
+    { "id": "default_skin_1", "name": "Default Skin 1", "type": "skin", "rarity": 1, "colors": { "shirt": "#3d5a3b", "pants": "#2d3436", "skin": "#e0ac69", "hair": "#3b2314", "accent": "#c2a878", "helmet": null } },
+    { "id": "default_skin_2", "name": "Default Skin 2", "type": "skin", "rarity": 1, "colors": { "shirt": "#4b5563", "pants": "#1f2937", "skin": "#8d5524", "hair": "#111827", "accent": "#9ca3af", "helmet": null } },
+    { "id": "default_skin_3", "name": "Default Skin 3", "type": "skin", "rarity": 1, "colors": { "shirt": "#854d0e", "pants": "#3f2e18", "skin": "#f1c27d", "hair": "#b45309", "accent": "#d97706", "helmet": null } },
+    { "id": "default_skin_4", "name": "Default Skin 4", "type": "skin", "rarity": 1, "colors": { "shirt": "#1e3a8a", "pants": "#1e293b", "skin": "#c68642", "hair": "#1f2937", "accent": "#60a5fa", "helmet": null } },
+    { "id": "skin_prisma", "name": "Prisma", "type": "skin", "rarity": 3, "colors": { "shirt": "#06b6d4", "pants": "#312e81", "skin": "#f1c27d", "hair": "#ec4899", "accent": "#f472b6", "visor": "#22d3ee" } },
+    { "id": "skin_goofball", "name": "Goofball", "type": "skin", "rarity": 3, "colors": { "shirt": "#facc15", "pants": "#ef4444", "skin": "#f1c27d", "hair": "#3b82f6", "accent": "#22c55e", "hat": "propeller" } },
+    { "id": "skin_stealth_trooper", "name": "Stealth Trooper", "type": "skin", "rarity": 4, "colors": { "shirt": "#111827", "pants": "#0f172a", "skin": "#c68642", "hair": "#030712", "accent": "#10b981", "helmet": "tactical" } },
+    { "id": "skin_black_knight", "name": "Black Knight", "type": "skin", "rarity": 5, "colors": { "shirt": "#18181b", "pants": "#09090b", "skin": "#18181b", "hair": "#18181b", "accent": "#dc2626", "helmet": "knight" } },
+    { "id": "skin_assasin", "name": "Assasin", "type": "skin", "rarity": 5, "colors": { "shirt": "#09090b", "pants": "#18181b", "skin": "#e0ac69", "hair": "#111827", "accent": "#f59e0b", "helmet": "hood" } },
+    { "id": "skin_trooper", "name": "Trooper", "type": "skin", "rarity": 2, "colors": { "shirt": "#365314", "pants": "#1a2e05", "skin": "#e0ac69", "hair": "#3b2314", "accent": "#a3e635", "helmet": "army" } },
+    { "id": "skin_assault_trooper", "name": "Assault Trooper", "type": "skin", "rarity": 2, "colors": { "shirt": "#78350f", "pants": "#292524", "skin": "#c68642", "hair": "#1c1917", "accent": "#fb923c", "helmet": "commando" } },
+    { "id": "skin_purple_skull_trooper", "name": "Purple Skull Trooper", "type": "skin", "rarity": 5, "accountExclusive": true, "colors": { "shirt": "#18181b", "pants": "#09090b", "skin": "#e5e7eb", "hair": "#18181b", "accent": "#a855f7", "helmet": "skull" } },
+
+    { "id": "emote_dance_moves", "name": "Dance Moves", "type": "emote", "rarity": 1, "anim": "dance_moves" },
+    { "id": "emote_squat_kick", "name": "Squat Kick", "type": "emote", "rarity": 3, "anim": "squat_kick" },
+    { "id": "emote_take_the_l", "name": "Take The L", "type": "emote", "rarity": 3, "anim": "take_the_l" },
+    { "id": "emote_doom", "name": "Doom", "type": "emote", "rarity": 4, "anim": "doom" },
+    { "id": "emote_kneel_of_honor", "name": "Kneel Of Honor", "type": "emote", "rarity": 5, "anim": "kneel" },
+    { "id": "emote_disco_fever", "name": "Disco Fever", "type": "emote", "rarity": 5, "anim": "disco" },
+    { "id": "emote_dab", "name": "Dab", "type": "emote", "rarity": 2, "anim": "dab" }
+  ]
+}
