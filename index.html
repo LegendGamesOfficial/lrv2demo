@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legend Royale • Season 2</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/lobby.css" />
+  <link rel="stylesheet" href="css/hud.css" />
+  <link rel="stylesheet" href="css/menus.css" />
+  <link rel="stylesheet" href="css/shop.css" />
+  <link rel="stylesheet" href="css/locker.css" />
+  <link rel="stylesheet" href="css/map.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+  <div id="toast-box"></div>
+
+  <!-- LOGIN MENU (Season 2: Image backdrop + bottom-middle login box) -->
+  <div id="login-screen">
+    <img id="login-bg-img" src="assets/images/login_bg.png" alt="Legend Royale Season 2" onerror="this.style.display='none'" />
+    <div class="login-backdrop-vignette"></div>
+    <div class="login-hero-header">
+      <div class="login-logo fn-title">LEGEND ROYALE</div>
+      <div class="login-sub">Season 2 • Battle Royale</div>
+    </div>
+    <div class="login-card login-bottom-card">
+      <div class="login-inputs-row">
+        <div class="form-group">
+          <label for="login-username">Username</label>
+          <input id="login-username" type="text" placeholder="Enter account username" autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input id="login-password" type="password" placeholder="Enter password" />
+        </div>
+      </div>
+      <div id="login-error" class="login-error"></div>
+      <div class="login-actions login-actions-row">
+        <button id="btn-login" class="btn-fn btn-yellow">LOG IN</button>
+        <button id="btn-guest" class="btn-fn btn-blue">PLAY AS GUEST</button>
+      </div>
+      <div class="dev-hint">Dev Account: <b>legend</b> / <b>12312348KK</b></div>
+    </div>
+  </div>
+
+  <!-- LOBBY & MENUS SHELL -->
+  <div id="app-shell" class="hidden">
+    <div id="lobby-canvas-wrap"><canvas id="lobby-canvas"></canvas></div>
+
+    <header class="top-nav">
+      <div class="nav-tabs">
+        <button class="nav-tab active" data-tab="lobby">LOBBY</button>
+        <button class="nav-tab" data-tab="seasonshop">SEASON SHOP</button>
+        <button class="nav-tab" data-tab="locker">LOCKER</button>
+        <button class="nav-tab" data-tab="rewards">ACCOUNT REWARDS</button>
+        <button class="nav-tab" data-tab="settings">SETTINGS</button>
+      </div>
+      <div class="nav-right">
+        <div class="user-pill" id="nav-username">Guest</div>
+      </div>
+    </header>
+
+    <main class="tab-layer">
+      <section id="view-lobby" class="tab-view">
+        <div class="lobby-left-card">
+          <div class="season-tag">SEASON 2</div>
+          <div class="banner-row">
+            <div id="lobby-banner-badge" class="banner-badge" style="background:#2563eb;">★</div>
+            <div>
+              <div id="lobby-level" class="level-num">LEVEL 1</div>
+              <div id="lobby-xp-text" class="xp-text">0 / 1000 XP</div>
+            </div>
+          </div>
+          <div class="xp-bar-bg"><div id="lobby-xp-fill" class="xp-bar-fill" style="width:0%"></div></div>
+        </div>
+
+        <div id="lobby-squad-labels" class="squad-labels"></div>
+
+        <div class="lobby-play-box">
+          <div class="mode-selector">
+            <button id="btn-mode-prev" class="mode-arrow" aria-label="Previous mode">&lt;</button>
+            <div id="lobby-mode-label" class="mode-label">SOLO</div>
+            <button id="btn-mode-next" class="mode-arrow" aria-label="Next mode">&gt;</button>
+          </div>
+          <button id="btn-ready" class="btn-fn btn-yellow btn-ready">READY</button>
+        </div>
+      </section>
+
+      <section id="view-seasonshop" class="tab-view hidden">
+        <div class="panel-container">
+          <div class="section-header">
+            <h2 class="fn-title">Season 2 Shop</h2>
+            <span class="item-meta">Free Skins Unlocked by Level (Season 2 Only • Not Saved in Locker)</span>
+          </div>
+          <div id="season-shop-grid" class="bp-grid"></div>
+        </div>
+      </section>
+
+      <section id="view-locker" class="tab-view hidden">
+        <div class="locker-layout">
+          <div class="locker-left">
+            <h2 class="fn-title" style="color:#fde047;">LOCKER</h2>
+            <div id="locker-loadout-slots" class="loadout-grid"></div>
+            <div>
+              <div class="item-type-tag" style="margin-bottom:6px;">EMOTE WHEEL (8 SLOTS • ALL UNLOCKED)</div>
+              <div id="locker-emote-slots" class="emote-slots-grid"></div>
+            </div>
+            <div id="locker-banner-controls" class="banner-customizer"></div>
+            <div id="locker-item-picker" class="locker-picker"></div>
+          </div>
+          <div class="locker-right">
+            <div id="locker-preview-label" class="locker-preview-badge">Outfit: Default Skin 1</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-rewards" class="tab-view hidden">
+        <div class="panel-container rewards-panel">
+          <div class="section-header">
+            <h2 class="fn-title">Account Rewards</h2>
+            <span class="item-meta">Season 2 Exclusive Skin Program</span>
+          </div>
+          <div class="rewards-grid">
+            <div class="settings-card">
+              <h3>How Legend Royale Accounts Work</h3>
+              <p style="color:#e2e8f0;line-height:1.6;margin-bottom:14px;">
+                Want your own Legend Royale account? Simply email
+                <b style="color:#fde047;">legendroyaleaccounts@proton.me</b>
+                with your desired <b>username</b> and <b>password</b>, and within <b>24 hours</b> it will be added to the game!
+              </p>
+              <p style="color:#cbd5e1;line-height:1.6;">
+                From now on, <b>every season</b>, all registered accounts automatically receive an exclusive seasonal skin that Guests cannot unlock.
+              </p>
+            </div>
+            <div class="settings-card rewards-featured-card">
+              <div class="item-type-tag" style="color:#c084fc;">SEASON 2 EXCLUSIVE SKIN</div>
+              <h3 style="color:#fde047;font-size:1.35rem;margin-top:4px;">Purple Skull Trooper</h3>
+              <p class="item-meta" style="margin-bottom:14px;">
+                Included automatically on all registered Legend Royale accounts for Season 2.
+              </p>
+              <button id="btn-preview-skull" class="btn-fn btn-yellow" style="padding:10px 16px;border-radius:8px;">3D PREVIEW PURPLE SKULL TROOPER</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-settings" class="tab-view hidden">
+        <div class="panel-container">
+          <div class="section-header"><h2 class="fn-title">Settings</h2></div>
+          <div class="settings-grid">
+            <div class="settings-card">
+              <h3>Graphics</h3>
+              <div class="form-group">
+                <label for="set-quality">Quality Preset</label>
+                <select id="set-quality">
+                  <option value="high" selected>High (Shadows &amp; Foliage)</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low (Max FPS)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="set-fov">Field of View: <span id="set-fov-val">72</span></label>
+                <input id="set-fov" type="range" min="60" max="95" value="72" />
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <h3>Audio &amp; Controls</h3>
+              <div class="form-group">
+                <label for="set-sens">Mouse Sensitivity: <span id="set-sens-val">1.0</span></label>
+                <input id="set-sens" type="range" min="0.3" max="2.5" step="0.1" value="1.0" />
+              </div>
+              <div class="form-group">
+                <label for="set-master-vol">Master Volume: <span id="set-master-vol-val">70%</span></label>
+                <input id="set-master-vol" type="range" min="0" max="1" step="0.05" value="0.7" />
+              </div>
+              <div class="form-group">
+                <label for="set-music-vol">Music Volume: <span id="set-music-vol-val">45%</span></label>
+                <input id="set-music-vol" type="range" min="0" max="1" step="0.05" value="0.45" />
+              </div>
+              <div class="form-group">
+                <label for="set-sfx-vol">SFX Volume: <span id="set-sfx-vol-val">75%</span></label>
+                <input id="set-sfx-vol" type="range" min="0" max="1" step="0.05" value="0.75" />
+              </div>
+              <button id="btn-toggle-mute" class="btn-fn btn-dark" style="padding:8px 12px;border-radius:6px;margin-bottom:10px;">MUTE ALL AUDIO</button>
+              <div class="keybind-list">
+                <div><b>WASD</b> Move</div><div><b>X</b> Crouch</div>
+                <div><b>E</b> Interact</div><div><b>I</b> Inventory / Drop</div>
+                <div><b>LMB</b> Fire / Place</div><div><b>RMB</b> Aim / Exit Build</div>
+                <div><b>Q/F/V/C</b> Wall/Floor/Ramp/Cone</div><div><b>R</b> Rotate / Reload</div>
+                <div><b>G</b> Edit Build</div><div><b>B</b> Emote Wheel</div>
+                <div><b>M</b> Full Map</div>
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <h3>Account</h3>
+              <p class="item-meta" style="margin-bottom:14px;">Signed in as: <b id="set-acc-name">Guest</b></p>
+              <button id="btn-logout" class="btn-fn btn-blue" style="padding:10px 16px;border-radius:8px;">SWITCH ACCOUNT / LOG OUT</button>
+            </div>
+
+            <div class="settings-card">
+              <h3>DEVELOPER CAMERA MODE (Developer-Only)</h3>
+              <p class="item-meta" style="margin-bottom:10px;">
+                Trailer &amp; cinematic free-fly camera. Status: <b id="dev-cam-status">DISABLED</b>.
+              </p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <button id="btn-devcam-enable" class="btn-fn btn-yellow" style="padding:8px 12px;border-radius:6px;">Enable Developer Camera Mode</button>
+                <button id="btn-devcam-disable" class="btn-fn btn-dark" style="padding:8px 12px;border-radius:6px;">Disable Developer Camera Mode</button>
+                <button id="btn-devcam-open-panel" class="btn-fn btn-blue" style="padding:8px 12px;border-radius:6px;">Open Cinematic Controls</button>
+                <button id="btn-devcam-reset" class="btn-fn btn-dark" style="padding:8px 12px;border-radius:6px;">Reset Camera</button>
+                <button id="btn-devcam-restore" class="btn-fn btn-dark" style="padding:8px 12px;border-radius:6px;">Restore Normal Gameplay Camera</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- IN-GAME BATTLE ROYALE SCREEN -->
+  <div id="game-screen" class="hidden">
+    <canvas id="game-canvas"></canvas>
+    <div class="hud-layer">
+      <div class="crosshair"></div>
+
+      <!-- TOP-LEFT PLAYER USERNAME & HEALTH -->
+      <div id="hud-player-card" class="hud-top-left">
+        <div id="hud-player-username" class="hud-player-name">Guest</div>
+        <div class="hud-tl-bar-row">
+          <div class="bar-track hud-tl-track">
+            <div id="hud-tl-shield-fill" class="bar-fill-shield" style="width:0%"></div>
+            <div id="hud-tl-shield-text" class="bar-text">0 SHD</div>
+          </div>
+          <div class="bar-track hud-tl-track">
+            <div id="hud-tl-hp-fill" class="bar-fill-hp" style="width:100%"></div>
+            <div id="hud-tl-hp-text" class="bar-text">100 HP</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="hud-phase-banner" class="hud-top-center">Spawn Island • Loading 19 Bots (0/19)</div>
+      <div class="hud-top-right">
+        <div class="hud-minimap-wrap"><canvas id="minimap-canvas" width="156" height="156"></canvas></div>
+        <div class="hud-stats-bar">
+          <span>👥 <span id="hud-alive">20</span></span>
+          <span>💀 <span id="hud-kills">0</span></span>
+          <span>⏱️ <span id="hud-storm-timer">2:00</span></span>
+          <span id="hud-fps">60 FPS</span>
+        </div>
+        <div class="hud-action-row">
+          <button id="btn-hud-inventory" class="btn-fn btn-dark hud-action-btn">INV [I]</button>
+          <button id="btn-hud-map" class="btn-fn btn-blue hud-action-btn">MAP [M]</button>
+          <button id="btn-hud-emotes" class="btn-fn btn-yellow hud-action-btn">EMOTES [B]</button>
+        </div>
+      </div>
+      <div id="hud-interact" class="interact-prompt hidden">Press [E] to Interact</div>
+      <div id="hud-kill-feed" class="kill-feed"></div>
+      <div class="hud-build-bar hidden" id="hud-build-bar">
+        <div id="hud-build-status" class="build-status-banner">WALL • Cost: 10 Wood • VALID</div>
+        <div class="build-piece-pill active" data-piece="wall">[Q] Wall</div>
+        <div class="build-piece-pill" data-piece="floor">[F] Floor</div>
+        <div class="build-piece-pill" data-piece="stairs">[V] Ramp</div>
+        <div class="build-piece-pill" data-piece="cone">[C] Cone</div>
+        <div class="build-piece-pill" data-piece="trap">Trap</div>
+      </div>
+      <div class="hud-mats">
+        <span>🪵 <span id="hud-wood">150</span></span>
+        <span>🧱 <span id="hud-brick">100</span></span>
+        <span>⚙️ <span id="hud-metal">50</span></span>
+      </div>
+      <div class="hud-bottom-center">
+        <div class="hud-bars">
+          <div class="bar-track">
+            <div id="hud-shield-fill" class="bar-fill-shield" style="width:0%"></div>
+            <div id="hud-shield-text" class="bar-text">0 / 100 SHIELD</div>
+          </div>
+          <div class="bar-track">
+            <div id="hud-hp-fill" class="bar-fill-hp" style="width:100%"></div>
+            <div id="hud-hp-text" class="bar-text">100 / 100 HP</div>
+          </div>
+        </div>
+        <div id="hud-hotbar" class="hud-hotbar"></div>
+      </div>
+    </div>
+
+    <!-- BOT PERCEPTION DEBUG PANEL (DEV ONLY) -->
+    <div id="bot-debug-panel" class="bot-debug-panel hidden"></div>
+
+    <!-- DEVELOPER CINEMATIC CONTROLS PANEL -->
+    <aside id="dev-cinematic-panel" class="dev-cin-panel hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <b style="color:#fde047;">DEV CINEMATIC TOOLS</b>
+        <button id="dev-btn-hide-ui" class="btn-fn btn-dark" style="padding:4px 8px;font-size:0.7rem;">HIDE UI</button>
+      </div>
+      <div class="dev-row">
+        <button id="dev-btn-hide-hud" class="btn-fn btn-blue">HIDE HUD</button>
+        <button id="dev-btn-restore-player" class="btn-fn btn-yellow">EXIT DEV CAM</button>
+      </div>
+      <label>Cam Speed: <span id="dev-cam-speed-val">32</span>
+        <input id="dev-cam-speed" type="range" min="4" max="120" value="32" />
+      </label>
+      <label>FOV: <span id="dev-cam-fov-val">70</span>
+        <input id="dev-cam-fov" type="range" min="30" max="110" value="70" />
+      </label>
+      <label>Smoothing:
+        <input id="dev-cam-smooth" type="range" min="2" max="25" value="14" />
+      </label>
+      <label>Time Scale (Slow-Mo): <span id="dev-time-scale-val">1.00x</span>
+        <input id="dev-time-scale" type="range" min="0" max="1" step="0.05" value="1" />
+      </label>
+      <div class="dev-row">
+        <button id="dev-btn-save-cam" class="btn-fn btn-dark">SAVE CAM</button>
+        <button id="dev-btn-load-cam" class="btn-fn btn-dark">LOAD CAM</button>
+        <button id="dev-btn-reset-cam" class="btn-fn btn-dark">RESET</button>
+      </div>
+      <label>Camera Preset:
+        <select id="dev-preset-select">
+          <option value="">-- Select Preset --</option>
+          <option>Island Overview</option>
+          <option>High Altitude</option>
+          <option>Map Flyover</option>
+          <option>POI Showcase</option>
+          <option>Character Showcase</option>
+          <option>Battle Showcase</option>
+          <option>Storm Showcase</option>
+        </select>
+      </label>
+      <label>Environment Lighting:
+        <select id="dev-env-select">
+          <option>Default</option>
+          <option>Bright Day</option>
+          <option>Golden Hour</option>
+          <option>Sunset</option>
+          <option>Night</option>
+          <option>Dramatic Storm</option>
+        </select>
+      </label>
+      <button id="dev-btn-reset-env" class="btn-fn btn-dark">RESET ENVIRONMENT</button>
+
+      <div style="border-top:1px solid rgba(96,165,250,0.3);margin-top:8px;padding-top:8px;">
+        <b style="color:#38bdf8;font-size:0.78rem;">BOT STAGING &amp; DEBUG</b>
+        <div class="dev-row" style="margin-top:4px;">
+          <input id="dev-bot-count" type="number" min="1" max="40" value="6" style="width:54px;padding:4px;background:#0f172a;color:#fff;border:1px solid #475569;" />
+          <button id="dev-btn-spawn-bots" class="btn-fn btn-blue">SPAWN HERE</button>
+          <button id="dev-btn-bot-battle" class="btn-fn btn-yellow">FIGHT</button>
+        </div>
+        <div class="dev-row" style="margin-top:4px;">
+          <button id="dev-btn-bot-move" class="btn-fn btn-dark">MOVE HERE</button>
+          <button id="dev-btn-bot-pause" class="btn-fn btn-dark">PAUSE AI</button>
+          <button id="dev-btn-bot-clear" class="btn-fn btn-dark">CLEAR</button>
+        </div>
+        <button id="dev-btn-bot-debug" class="btn-fn btn-dark" style="margin-top:4px;width:100%;">BOT DEBUG: OFF</button>
+      </div>
+
+      <div style="border-top:1px solid rgba(96,165,250,0.3);margin-top:8px;padding-top:8px;">
+        <b style="color:#38bdf8;font-size:0.78rem;">CHARACTER SHOWCASE</b>
+        <select id="dev-skin-select" style="margin-top:4px;"></select>
+        <div class="dev-row" style="margin-top:4px;">
+          <select id="dev-emote-select"></select>
+          <button id="dev-btn-play-emote" class="btn-fn btn-yellow">EMOTE</button>
+          <button id="dev-btn-rot-char" class="btn-fn btn-dark">ROT</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- INVENTORY OVERLAY [I] -->
+    <div id="inventory-overlay" class="modal-overlay hidden">
+      <div class="modal-box" style="width:min(620px,94vw);">
+        <h2 class="fn-title" style="font-size:1.6rem;">INVENTORY</h2>
+        <p class="item-meta" style="margin-bottom:14px;">Click any item below to drop it onto the island</p>
+        <div id="inventory-modal-slots" class="inv-drop-grid"></div>
+        <div id="inventory-modal-ammo" class="inv-ammo-bar"></div>
+        <button id="btn-close-inventory" class="btn-fn btn-yellow" style="padding:10px 20px;border-radius:8px;margin-top:14px;">CLOSE [I]</button>
+      </div>
+    </div>
+
+    <!-- BUILDING EDIT OVERLAY -->
+    <div id="edit-build-overlay" class="modal-overlay hidden">
+      <div class="modal-box" style="width:min(360px,90vw);">
+        <h2 id="edit-piece-title" class="fn-title" style="font-size:1.4rem;">EDIT WALL</h2>
+        <p class="item-meta" style="margin-bottom:12px;">Select an edit shape to modify geometry &amp; collision</p>
+        <div data-for-type="wall" style="display:flex;flex-direction:column;gap:8px;">
+          <button data-edit-shape="door" class="btn-fn btn-yellow" style="padding:10px;border-radius:6px;">DOOR OPENING</button>
+          <button data-edit-shape="window" class="btn-fn btn-blue" style="padding:10px;border-radius:6px;">WINDOW OPENING</button>
+          <button data-edit-shape="half" class="btn-fn btn-blue" style="padding:10px;border-radius:6px;">HALF WALL</button>
+        </div>
+        <div data-for-type="floor" style="display:flex;flex-direction:column;gap:8px;">
+          <button data-edit-shape="corner" class="btn-fn btn-yellow" style="padding:10px;border-radius:6px;">CORNER CUTOUT</button>
+        </div>
+        <div data-for-type="stairs" style="display:flex;flex-direction:column;gap:8px;">
+          <button data-edit-shape="rotated" class="btn-fn btn-yellow" style="padding:10px;border-radius:6px;">ROTATE RAMP 90°</button>
+        </div>
+        <div data-for-type="cone" style="display:flex;flex-direction:column;gap:8px;">
+          <button data-edit-shape="corner" class="btn-fn btn-yellow" style="padding:10px;border-radius:6px;">CORNER / LOW CONE</button>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px;justify-content:center;">
+          <button id="btn-edit-reset" class="btn-fn btn-dark" style="padding:9px 14px;border-radius:6px;">RESET [RMB]</button>
+          <button id="btn-edit-cancel" class="btn-fn btn-dark" style="padding:9px 14px;border-radius:6px;">CLOSE</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FULL MAP OVERLAY -->
+    <div id="full-map-overlay" class="modal-overlay hidden">
+      <div class="full-map-box">
+        <h2 class="fn-title" style="color:#fde047;">ISLAND MAP</h2>
+        <p class="item-meta">Click to place Waypoint • Drag to Pan • Scroll to Zoom</p>
+        <canvas id="full-map-canvas" width="580" height="580"></canvas>
+        <div class="map-controls">
+          <button id="btn-clear-waypoint" class="btn-fn btn-dark" style="padding:10px 16px;border-radius:8px;">CLEAR WAYPOINT</button>
+          <button id="btn-close-map" class="btn-fn btn-yellow" style="padding:10px 18px;border-radius:8px;">CLOSE [M]</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMOTE WHEEL OVERLAY -->
+    <div id="emote-wheel-overlay" class="modal-overlay hidden">
+      <div class="modal-box">
+        <h2 class="fn-title">EMOTE WHEEL</h2>
+        <div id="emote-wheel-grid" class="emote-wheel-grid"></div>
+        <button id="btn-close-emotes" class="btn-fn btn-dark" style="padding:10px 18px;border-radius:8px;">CLOSE [B]</button>
+      </div>
+    </div>
+
+    <!-- MATCH END MODAL -->
+    <div id="match-end-modal" class="modal-overlay hidden">
+      <div class="modal-box">
+        <h2 id="match-end-title" class="fn-title">VICTORY ROYALE!</h2>
+        <p id="match-end-sub" class="item-meta">You outlasted all 19 opponents!</p>
+        <div class="modal-stats">
+          <div class="stat-tile"><div class="item-type-tag">PLACEMENT</div><div id="end-place" class="item-name">#1 / 20</div></div>
+          <div class="stat-tile"><div class="item-type-tag">ELIMINATIONS</div><div id="end-kills" class="item-name">0</div></div>
+          <div class="stat-tile"><div class="item-type-tag">XP EARNED</div><div id="end-xp" class="item-name">+500 XP</div></div>
+          <div class="stat-tile"><div class="item-type-tag">MODE</div><div id="end-mode" class="item-name">SOLO</div></div>
+        </div>
+        <button id="btn-return-lobby" class="btn-fn btn-yellow" style="padding:14px 26px;border-radius:8px;font-size:1.05rem;">RETURN TO LOBBY</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
